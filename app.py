@@ -17,11 +17,6 @@ disciplina = st.selectbox(
     ["Todas"] + sorted(df["Disciplina"].dropna().unique().tolist())
 )
 
-empresa = st.selectbox(
-    "Empresa",
-    ["Todas"] + sorted(df["Empresa"].dropna().unique().tolist())
-)
-
 # Aplicar filtros
 resultado = df.copy()
 
@@ -34,9 +29,6 @@ if texto:
 
 if disciplina != "Todas":
     resultado = resultado[resultado["Disciplina"] == disciplina]
-
-if empresa != "Todas":
-    resultado = resultado[resultado["Empresa"] == empresa]
 
 st.write(f"Resultados encontrados: {len(resultado)}")
 
