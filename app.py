@@ -39,6 +39,12 @@ codigo_ficha = st.selectbox(
 
 # Aplicar filtros
 resultado = df.copy()
+if texto:
+    resultado = resultado[
+        resultado.astype(str)
+        .apply(lambda row: row.str.contains(texto, case=False, na=False))
+        .any(axis=1)
+    ]
 
 if disciplina != "Todas":
     resultado = resultado[resultado["Disciplina"] == disciplina]
