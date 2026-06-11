@@ -1,2 +1,2 @@
 # buscador-gp
-Biblioteca Digital e Aprendizajes GP
+Biblioteca Digital de Aprendizajes GP
