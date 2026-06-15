@@ -3,7 +3,11 @@ import pandas as pd
 
 st.set_page_config(page_title="Buscador GP", layout="wide")
 
-st.title("🔍 Biblioteca Digital de Aprendizajes GP")
+st.title("📚 Biblioteca Digital de Aprendizajes GP")
+
+st.info(
+    "Consulta eventos históricos, lecciones aprendidas y controles asociados para apoyar la planificación y ejecución segura de proyectos."
+)
 
 # Cargar Excel
 df = pd.read_excel("BD Buscador GP.xlsx")
