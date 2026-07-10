@@ -70,8 +70,18 @@ if codigo_ficha != "Todos":
     resultado = resultado[resultado["Código Ficha"] == codigo_ficha]
 
 st.write(f"Resultados encontrados: {len(resultado)}")
+columnas_mostrar = [
+    "Fecha",
+    "Título",
+    "EDC",
+    "Disciplina",
+    "Subtipo",
+    "Equipo involucrado",
+    "Código Ficha"
+]
+
 st.dataframe(
-    resultado,
+    resultado[columnas_mostrar],
     width="stretch",
     hide_index=True,
 )
