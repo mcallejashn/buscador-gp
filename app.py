@@ -2,7 +2,16 @@ import streamlit as st
 import pandas as pd
 
 st.set_page_config(page_title="Buscador GP", layout="wide")
-
+st.markdown(
+    """
+    <style>
+        [data-testid="stSidebar"] {
+            display: none;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 st.title("📚 Biblioteca Digital de Aprendizajes GP")
 
 st.info(
@@ -76,10 +85,26 @@ columnas_mostrar = [
     "Código Ficha"
 ]
 
+tabla = resultado[columnas_mostrar].copy()
+
+tabla["Código Ficha"] = tabla["Código Ficha"].apply(
+    lambda codigo: (
+        f"https://aprendizajes-gp.streamlit.app/Ver_ficha?codigo={codigo}"
+        if pd.notna(codigo)
+        else None
+    )
+)
+
 st.dataframe(
-    resultado[columnas_mostrar],
+    tabla,
     width="stretch",
     hide_index=True,
+    column_config={
+        "Código Ficha": st.column_config.LinkColumn(
+            "Código Ficha",
+            display_text=r"codigo=(F\d+)"
+        )
+    },
 )
 
 
