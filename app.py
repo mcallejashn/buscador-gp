@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
 import os
+ficha_seleccionada = st.query_params.get("ficha")
+
+if ficha_seleccionada:
+    st.write(f"Ficha seleccionada: {ficha_seleccionada}")
 st.set_page_config(page_title="Buscador GP", layout="wide")
 
 st.title("📚 Biblioteca Digital de Aprendizajes GP")
@@ -66,32 +70,11 @@ if codigo_ficha != "Todos":
     resultado = resultado[resultado["Código Ficha"] == codigo_ficha]
 
 st.write(f"Resultados encontrados: {len(resultado)}")
-# Mostrar resultados como tabla HTML
-html = """
-<table style="width:100%; border-collapse:collapse;">
-<tr style="background-color:#f2f2f2;">
-    <th style="padding:8px; border:1px solid #ddd;">Fecha</th>
-    <th style="padding:8px; border:1px solid #ddd;">Título</th>
-    <th style="padding:8px; border:1px solid #ddd;">Código</th>
-</tr>
-"""
-
-for _, fila in resultado.iterrows():
-    html += f"""
-    <tr>
-        <td style="padding:8px; border:1px solid #ddd;">{fila['Fecha']}</td>
-        <td style="padding:8px; border:1px solid #ddd;">{fila['Título']}</td>
-        <td style="padding:8px; border:1px solid #ddd;">
-            <a href="fichas/{fila['Código Ficha']}.pdf" target="_blank">
-                {fila['Código Ficha']}
-            </a>
-        </td>
-    </tr>
-    """
-
-html += "</table>"
-
-st.html(html)
+st.dataframe(
+    resultado,
+    width="stretch",
+    hide_index=True,
+)
 
 
     
