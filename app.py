@@ -1,10 +1,6 @@
 import streamlit as st
 import pandas as pd
-import os
-ficha_seleccionada = st.query_params.get("ficha")
 
-if ficha_seleccionada:
-    st.write(f"Ficha seleccionada: {ficha_seleccionada}")
 st.set_page_config(page_title="Buscador GP", layout="wide")
 
 st.title("📚 Biblioteca Digital de Aprendizajes GP")
